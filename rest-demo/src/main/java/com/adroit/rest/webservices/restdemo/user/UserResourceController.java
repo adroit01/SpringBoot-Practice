@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.adroit.rest.webservices.restdemo.exception.UserNotFoundException;
-
 @RestController
 public class UserResourceController {
 
@@ -33,10 +31,6 @@ public class UserResourceController {
 	public User retrieveUser(@PathVariable String id) throws Exception
 	{
 		User user = userDaoService.getUser(id);
-		if(user == null)
-		{
-			throw new UserNotFoundException("User with Id:" + id + " not exist");
-		}
 		return user;
 	}
 	//Create a user
