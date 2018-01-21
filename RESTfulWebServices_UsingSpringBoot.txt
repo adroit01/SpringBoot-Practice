@@ -1,0 +1,185 @@
+**************Topic*****************
+RESTful Web services using Spring Boot
+RESTful Web services are first step for key for developing great microservices.
+
+
+*********We will stick to below Agenda***************
+
+1. Web services
+2. What is meant by RESTful Web services
+3. Basics of Spring framework,IOC, AOP & MVC, Spring Bean,Bean Factory,Application Context, LifeCycle of a Bean 
+4. What is SpringBoot Goals,features etc.
+5. Quick Environment setup(Java 8, Eclipse IDE, Maven and Spring plugin) for running Spring Boot Application
+6. Understanding different features of RESTful web services through  Social Media Application User->Posts
+7. Best practices in designing RESTful web services
+
+No Microservices and no MS Next, MS360 today please, once we are thorough with what is available openly in world we will always have time 
+to get back to Amdocs specific things
+
+
+*********We will be using***********
+Java 8 as language/compiler
+Eclipse as IDE
+Maven for build and dependency management
+Spring Plugin in Eclipse as Framework on top of which Spring Boot Application will be developed.
+A sample spring Boot starter project start.spring.io
+Swagger(Documentation)
+
+
+******Web Services********************
+Application to Application Interaction
+Service Provider(Server) and Service Consumer(Client)
+Provides service over Network(Web) using mainly  over HTTP/HTTPS
+Request and Response should be technology or platform independent xml/Json/html
+Service definition(Format and Structure of Request and Response and service endpoint)
+Two Style - SOAP Web Services and RESTful Web Services
+
+
+
+*****SOAP Web Services**************
+Data Exchange format- Xml based
+Well defined message format (SOAP envelope(Header and Body))
+Service definition- WSDL(Request/Response structure, service endpoint)
+Transport- HTTP or MQ
+
+
+*****RESTful Web services**************
+REST- REpresentational State Transfer, The state of Resource in an application is transferred as Response.
+first used by Roy Fielding also man behind HTTP protocol.
+REST is a Architectural style/approach, how we should design/implement Web Services.
+Resource - key abstraction, Its a Noun having a URI(Uniform Resource Identifier)
+/users
+/users/1000
+/users/1000/posts
+/users/1000/posts/p1
+
+HTTP/HTTPS - Transport protocol
+Resource can have different representation html/xml/json
+Operation performed on Resource via different method- GET,POST,PUT,DELETE (CRUD)
+HTTP status codes 200,201,400,404
+Service Definition has no well defined standard, swagger for definition/documentation of service.
+
+******Spring****************************
+A container framework to develop java based Enterprise Application quickly
+ApplicationContext - Config xml or Annotation Based 
+Beans- POJO(Plain Old Java Object created and managed by spring container)
+IOC, AOP & MVC as main features
+LifeCycle of Bean in a container
+
+*****SpringBoot*************************
+1.Goals
+	Quickly build a production ready application. no more monolithic application
+	provides common non functional features
+	-logging
+	-documentation
+	-health check monitoring
+	-metrics
+	-Embedded server
+
+2.SpringBoot is confused to 
+Do code generation. it does zero code generation.
+It is  not an application server/web server
+
+
+3.Features
+-Quickly create a Spring Application which is must for Microservices world.
+-Embedded Server- tomcat,jetty,Undertow
+-Externalized configuration
+-SpringBoot starter projects
+	JPA,Web,Actuator,logging,documentation
+-production ready features
+	-metrics and health check
+	-externalized configuration
+	
+	some of the Spring boot starter projects
+-	spring-boot-starter-web			for soap/rest web services application
+-	spring-boot-starter-test		for Unit/Integration testing
+-	spring-boot-starter-devtools	for developers one of the service it gives is not required to restart the server to reflect the code change
+-	spring-boot-starter-data-jpa	for ORM framework Spring default is hibernate implementation
+- 	spring-boot-starter-security	Authentication and authorization using basic spring security
+-	spring-boot-starter-cache		for Enabling spring framework cache support
+-	spring-boot-starter-hateoas		for providing features related to Hyper media as engine for application state
+-	spring-boot-starter-jdbc		for traditional JDBC
+-	spring-boot-starter-data-rest	for exposing Rest services using Spring Data
+
+A Sample HelloWorld Application using SpringBoot Starter in 10 min
+
+
+
+
+
+
+
+
+*********Understanding a RESTful Web services through  Social Media Application User->Posts**********
+
+A Simple Social Media Application
+
+One or more User can be created,retrieved,deleted
+create one or more Posts for a User
+View one or more post of User
+Delete one or more post of User
+
+-Create a user 		POST /users
+-Retrieve a user	GET /users/{id}	->GET /users/123
+-Retrieve all user	GET	/users	
+-Delete  a user		DELETE /users/{id}  -> DELETE /users/123
+-Delete all user	DELETE /users	
+
+-Create a post for a user	POST /users/{id}/posts	->	POST /users/123/posts	
+-Retrieve all posts of a user	GET /users/{id}/posts	->	GET /users/123/posts
+-Retrieve details of a post 	GET /users/{id}/posts/{post_id}	->GET /users/123/posts/p1
+-Delete a post of a User	DELETE /users/{id}/posts/{post_id} -> DELETE /users/1/posts/p1
+-Delete all post of a user 	DELETE /users/{id}/posts -> DELETE /users/1/posts
+
+*********Best Practices  for Web Services**************
+1. Richardson Maturity Model - How RESTful your web service is
+	Level 0 = Exposing SOAP web services in restful style
+	like http://host:post/getAllUsers 	http://host:port/getUser/?id=1000 http://host:port/deleteAUser
+
+	Level 1 = Exposing Resources with proper URI may not be  using proper HTTP methods to get the job done.
+	like 	http://host:port/users/	http://host:port/users/1000	
+
+	Level 2 = Level 1 + Proper use of HTTP methods
+		To retrieve a user with ID=1000
+		GET /users/1000
+		to delete a user with Id=1000
+		DELETE  /users/1000
+		to create a user
+		POST /users
+
+	Level 3 = Level 2 + HATEOAS
+		In response Not just what data/resource is requested but also next possible actions
+		Data + Next possible actions
+
+2. Consumer First
+Always think of your Consumer, provide them the best documentation about your service. Swagger is one of the standard documentation
+
+3. Make Best use of HTTP methods, right method(GET,POST,PUT,DELETE) for different action on Resource
+
+4. Send back correct HTTP Response status
+200 - SUCCESS
+201	- RESOURCE CREATED
+400 - BAD REQUEST
+401 - UNAUTHORIZED
+404	- RESOURCE NOT FOUND
+500 - SERVER ERRROR
+
+
+
+********Advanced Topics**********
+Exception Handling
+Documentation
+Internationalization(i18n)
+Monitoring
+HATEOAS
+Security
+Validation
+Versioning
+Filtering
+
+
+
+
+
+
